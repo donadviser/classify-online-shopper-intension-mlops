@@ -1,0 +1,18 @@
+bentoml
+click
+joblib
+lxml
+matplotlib
+mlflow
+numpy
+pandas
+Pillow
+python-dotenv
+rich
+scikit_learn
+scipy
+SQLAlchemy
+statsmodels
+typing_extensions
+zenml
+-e .
