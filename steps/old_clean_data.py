@@ -9,7 +9,7 @@ from typing_extensions import Annotated
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer
 
-from src.data_cleaning import create_preprocessing_pipeline
+from src.data_preprocess import create_preprocessing_pipeline
 
 from utils.preprocess import DataFrameTransformer
 

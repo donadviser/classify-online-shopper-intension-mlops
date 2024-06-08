@@ -12,11 +12,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, MinMaxScaler, RobustScaler
 
 
-from utils.preprocess import (
-    OutlierTransformer,
-    FeatureEngineeringTransformer,
-    RenameColumnsTransformer
-    )
 
 def create_prepprocessor_transformers(numeric_features: str, categorical_features: str) -> ColumnTransformer:
     # Preprocessing pipeline for numeric features
@@ -43,14 +38,8 @@ def create_prepprocessor_transformers(numeric_features: str, categorical_feature
     return preprocessor
 
 
-def create_preprocessing_pipeline(
-        numeric_features, 
-        categorical_features,
-        drop_na: Optional[bool] = None,
-        drop_columns: Optional[List[str]] = None,
-        ) -> Tuple[
+def create_preprocessing_pipeline(numeric_features, categorical_features) -> Tuple[
             Annotated[Pipeline, "preprocess_pipeline"],
-            Annotated[List, "numeric_features"]
             ]:
     
     """
@@ -68,18 +57,6 @@ def create_preprocessing_pipeline(
     try:
         # We use the sklearn pipeline to chain together multiple preprocessing steps
         preprocess_pipeline = Pipeline([("passthrough", "passthrough")])
-        if drop_na:
-            preprocess_pipeline.steps.append(('drop_na', FunctionTransformer(lambda x: x.dropna(), validate=False)))
-
-        if drop_columns:
-            preprocess_pipeline.steps.append(("drop_columns", FunctionTransformer(lambda x: x.drop(columns=drop_columns), validate=False)))
-
-        preprocess_pipeline.steps.append(('rename_columns', RenameColumnsTransformer()))
-
-        preprocess_pipeline.steps.append(('feature_engineering', FeatureEngineeringTransformer()))
-
-        new_features = ['interaction_rate']
-        numeric_features = numeric_features+new_features
 
         preprocessor = create_prepprocessor_transformers(numeric_features, categorical_features)
 
@@ -88,7 +65,7 @@ def create_preprocessing_pipeline(
 
 
         logging.info("Preprocessing pipeline created successfully.")
-        return preprocess_pipeline, numeric_features
+        return preprocess_pipeline
     except Exception as e:
         logging.error(f"Error in create_preprocessing_pipeline: {e}")
         raise CustomException(e, f"Error in create_preprocessing_pipeline")
