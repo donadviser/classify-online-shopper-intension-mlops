@@ -24,10 +24,7 @@ experiment_tracker = Client().active_stack.experiment_tracker
 #@step(enable_cache=False, experiment_tracker=experiment_tracker.name)
 @step()
 def train_model(
-        X_train: np.ndarray, 
-        y_train: np.ndarray, 
-        X_test: np.ndarray, 
-        y_test: np.ndarray,     
+        train_array: np.ndarray,  
         ) -> Annotated[ClassifierMixin, ArtifactConfig(name="classifier_model", is_model_artifact=True)]:
     """
     Trains the model
@@ -41,6 +38,13 @@ def train_model(
     Returns:
         Annotated[ClassifierMixin, "sklearn_regressor_model"]: Trained model
     """
+    logging.info("Split training and test input data")
+    X_train,y_train,X_test,y_test=(
+        train_array[:,:-1],
+        train_array[:,-1]
+    )
+
+
     model_config = ModelNameConfig()
     logging.info(f"Model name: {model_config.model_name}")
     try:

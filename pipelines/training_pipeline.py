@@ -3,6 +3,7 @@ from steps.ingest_data import ingest_df
 from steps.prepare_data import prepare_df
 from steps.clean_data import clean_df
 from steps.split_data import data_splitter
+from steps.model_train import train_model
 
 from src.logger import logging
 from src.exceptions import CustomException
@@ -26,15 +27,15 @@ def train_pipeline(data_path: str)->None:
         train_array, test_array = clean_df(X_train_clean, X_test_clean, y_train_clean, y_test_clean)
         logging.info("Data Cleaning Step [Data Preprocessing Step] completed successfully")
 
-        """classifier_model = train_model(X_train_encoded, y_train, X_test_encoded, y_test)
-        accuracy, precision_score, recall_score, f1_score, confusion_matrix, classification_report  = evaluate_model(classifier_model, X_test_encoded, y_test)
+        classifier_model = train_model(train_array)
+        accuracy, precision_score, recall_score, f1_score, confusion_matrix, classification_report  = evaluate_model(classifier_model, test_array)
 
         logging.info(f"accuracy: {accuracy}")
         logging.info(f"precision_score: {precision_score}")
         logging.info(f"recall_score: {recall_score}")
         logging.info(f"f1_score: {f1_score}")
         logging.info(f"confusion_matrix: {confusion_matrix}")
-        logging.info(f"classification_report: {classification_report}")"""
+        logging.info(f"classification_report: {classification_report}")
         
 
         logging.info("Training pipeline completed successfully")      

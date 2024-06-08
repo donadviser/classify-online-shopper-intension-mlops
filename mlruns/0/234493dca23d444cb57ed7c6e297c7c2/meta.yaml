@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/don/github-projects/classify-online-shopper-intension-mlops/mlruns/0/234493dca23d444cb57ed7c6e297c7c2/artifacts
+end_time: 1717869456404
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 234493dca23d444cb57ed7c6e297c7c2
+run_name: skillful-penguin-437
+run_uuid: 234493dca23d444cb57ed7c6e297c7c2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717869453884
+status: 3
+tags: []
+user_id: don

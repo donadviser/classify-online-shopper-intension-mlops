@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/don/github-projects/classify-online-shopper-intension-mlops/mlruns/0/963e30af13214b0eb169a11e10f6fa80/artifacts
+end_time: 1717869461432
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 963e30af13214b0eb169a11e10f6fa80
+run_name: likeable-grub-70
+run_uuid: 963e30af13214b0eb169a11e10f6fa80
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717869459029
+status: 3
+tags: []
+user_id: don
