@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/don/github-projects/classify-online-shopper-intension-mlops/mlruns/0/2f1c665c9b5b42528e84768d92262f61/artifacts
+end_time: 1717870557082
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2f1c665c9b5b42528e84768d92262f61
+run_name: powerful-shad-236
+run_uuid: 2f1c665c9b5b42528e84768d92262f61
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717870555255
+status: 3
+tags: []
+user_id: don

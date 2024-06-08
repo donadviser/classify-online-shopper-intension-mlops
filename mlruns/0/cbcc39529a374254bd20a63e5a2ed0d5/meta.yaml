@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/don/github-projects/classify-online-shopper-intension-mlops/mlruns/0/cbcc39529a374254bd20a63e5a2ed0d5/artifacts
+end_time: 1717870583264
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cbcc39529a374254bd20a63e5a2ed0d5
+run_name: loud-cub-62
+run_uuid: cbcc39529a374254bd20a63e5a2ed0d5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717870583248
+status: 3
+tags: []
+user_id: don

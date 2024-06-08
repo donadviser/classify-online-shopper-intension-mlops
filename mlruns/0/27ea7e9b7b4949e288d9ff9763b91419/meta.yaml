@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/don/github-projects/classify-online-shopper-intension-mlops/mlruns/0/27ea7e9b7b4949e288d9ff9763b91419/artifacts
+end_time: 1717870562973
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 27ea7e9b7b4949e288d9ff9763b91419
+run_name: righteous-perch-358
+run_uuid: 27ea7e9b7b4949e288d9ff9763b91419
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717870559967
+status: 3
+tags: []
+user_id: don

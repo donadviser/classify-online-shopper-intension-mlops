@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/don/github-projects/classify-online-shopper-intension-mlops/mlruns/0/e3a1f88d5d704cf49ad30b8e65f493b8/artifacts
+end_time: 1717870550633
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e3a1f88d5d704cf49ad30b8e65f493b8
+run_name: luminous-hen-283
+run_uuid: e3a1f88d5d704cf49ad30b8e65f493b8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717870548223
+status: 3
+tags: []
+user_id: don

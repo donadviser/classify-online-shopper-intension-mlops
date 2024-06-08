@@ -22,9 +22,10 @@ experiment_tracker = Client().active_stack.experiment_tracker
 #mlflow.sklearn.autolog()
 
 #@step(enable_cache=False, experiment_tracker=experiment_tracker.name)
-@step()
+#@step()
 def train_model(
-        train_array: np.ndarray,  
+        train_array: np.ndarray, 
+        test_array: np.ndarray,
         ) -> Annotated[ClassifierMixin, ArtifactConfig(name="classifier_model", is_model_artifact=True)]:
     """
     Trains the model
@@ -39,9 +40,11 @@ def train_model(
         Annotated[ClassifierMixin, "sklearn_regressor_model"]: Trained model
     """
     logging.info("Split training and test input data")
-    X_train,y_train,X_test,y_test=(
+    X_train,y_train, X_test,y_test = (
         train_array[:,:-1],
-        train_array[:,-1]
+        train_array[:,-1],
+        test_array[:,:-1],
+        test_array[:,-1],
     )
 
 

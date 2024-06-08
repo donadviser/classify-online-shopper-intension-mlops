@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/don/github-projects/classify-online-shopper-intension-mlops/mlruns/0/c1add389c1a84a3a83a19ae05d97ebad/artifacts
+end_time: 1717870578916
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c1add389c1a84a3a83a19ae05d97ebad
+run_name: wise-sponge-106
+run_uuid: c1add389c1a84a3a83a19ae05d97ebad
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717870575303
+status: 3
+tags: []
+user_id: don

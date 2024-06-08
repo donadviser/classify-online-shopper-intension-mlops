@@ -2,8 +2,9 @@ from zenml import pipeline
 from steps.ingest_data import ingest_df
 from steps.prepare_data import prepare_df
 from steps.clean_data import clean_df
-from steps.split_data import data_splitter
 from steps.model_train import train_model
+from steps.evaluation import evaluate_model
+
 
 from src.logger import logging
 from src.exceptions import CustomException
@@ -27,7 +28,7 @@ def train_pipeline(data_path: str)->None:
         train_array, test_array = clean_df(X_train_clean, X_test_clean, y_train_clean, y_test_clean)
         logging.info("Data Cleaning Step [Data Preprocessing Step] completed successfully")
 
-        classifier_model = train_model(train_array)
+        classifier_model = train_model(train_array, test_array)
         accuracy, precision_score, recall_score, f1_score, confusion_matrix, classification_report  = evaluate_model(classifier_model, test_array)
 
         logging.info(f"accuracy: {accuracy}")
