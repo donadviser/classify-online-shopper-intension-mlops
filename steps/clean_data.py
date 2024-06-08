@@ -1,17 +1,23 @@
-from logger import logging
-from exceptions import CustomException
+from src.logger import logging
+from src.exceptions import CustomException
 import pandas as pd
 import numpy as np
 from typing import Tuple
 from typing_extensions import Annotated
+import joblib
 
 from sklearn.pipeline import Pipeline
 from src.data_cleaning import create_preprocessing_pipeline
+from steps.split_data import data_splitter
 from utils.preprocess import DataFrameTransformer
+from zenml import step
 
-
-def clean_df(X_data: pd.DataFrame, target_col: str) -> Tuple[
-    Annotated[np.ndarray, "X_preprocessed"],
+#@step
+def clean_df(data_df: pd.DataFrame, target_col: str) -> Tuple[
+    Annotated[pd.DataFrame, "X_train_preprocessed"],
+    Annotated[pd.DataFrame, "X_test_preprocessed"],
+    Annotated[pd.Series, "y_train"],
+    Annotated[pd.Series, "y_test"],
     Annotated[Pipeline, "preprocess_pipeline"]
 ]:
     
@@ -21,6 +27,21 @@ def clean_df(X_data: pd.DataFrame, target_col: str) -> Tuple[
 
     
     try:
+        y = data_df[target_col]
+
+        # Define the features X
+        X = data_df.drop(columns=[target_col])
+
+        X_train, X_test, y_train, y_test = data_splitter(X, y, test_size = 0.2, random_state = 42, stratify=y)
+        #Define the target variable y
+        
+        print(X_train.shape)
+        print(X_test.shape)
+        print(y_train.shape)
+        print(y_test.shape)
+        print(X_train.head())
+        print(y_train.head())
+
         drop_na = None
         drop_columns = []#['month', 'visitor_type']
 
@@ -33,7 +54,8 @@ def clean_df(X_data: pd.DataFrame, target_col: str) -> Tuple[
             )      
     
         # Fit and transform the data
-        X_preprocessed = preprocess_pipeline.fit_transform(X_data).toarray()
+        X_train_preprocessed = preprocess_pipeline.fit_transform(X_train).toarray()
+        X_test_preprocessed = preprocess_pipeline.transform(X_test).toarray()
 
         # Retrieve feature names after transformation
         num_features = preprocess_pipeline.named_steps['preprocessor'].named_transformers_['num'].named_steps['scaler'].get_feature_names_out(numeric_features)
@@ -43,9 +65,28 @@ def clean_df(X_data: pd.DataFrame, target_col: str) -> Tuple[
 
         # Cast the data to a DataFrame
         df_transformer = DataFrameTransformer(feature_names)        
-        X_preprocessed = df_transformer.transform(X_preprocessed)
+        #X_train_preprocessed = df_transformer.transform(X_train_preprocessed)
+        #X_test_preprocessed = df_transformer.transform(X_test_preprocessed)
+
+        print(f"{X_train_preprocessed.shape=}")
+        print(f"{X_test_preprocessed.shape=}")
+        print(f"{y_train.shape=}")
+        print(f"{y_test.shape=}")
+
+        train_array = np.c_[X_train_preprocessed, np.array(y_train)]
+        test_array = np.c_[X_test_preprocessed, np.array(y_test)]
+
+        logging.info(f"Saving the preprocessing objects.")
+
+        # Save artefacts
+        joblib.dump(preprocess_pipeline, 'artefacts/preprocess_pipeline.pkl')
+        joblib.dump(train_array, 'artefacts/data_train_preprocessed.pkl')
+        joblib.dump(test_array, 'artefacts/data_test_preprocessed.pkl')
+        logging.info("Preprocessed artefacts saved")
+
+        #print(X_train_preprocessed.describe().T)
         
-        return X_preprocessed, preprocess_pipeline
+        return train_array, test_array
 
     except Exception as e:
         raise CustomException(e, f"Error in clean_df")

@@ -1,5 +1,5 @@
-from logger import logging
-from exceptions import CustomException
+from src.logger import logging
+from src.exceptions import CustomException
 import pandas as pd
 import numpy as np
 from typing import Tuple, Union, Optional, List
@@ -29,7 +29,8 @@ def create_prepprocessor_transformers(numeric_features: str, categorical_feature
     # Preprocessing pipeline for categorical features
     categorical_transformer = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='most_frequent')),
-        ('onehot', OneHotEncoder(handle_unknown='ignore'))
+        ('onehot', OneHotEncoder(handle_unknown='ignore')),
+        ("scaler",StandardScaler(with_mean=False))
     ])
 
     # Combine the transformers into a ColumnTransformer
@@ -54,6 +55,8 @@ def create_preprocessing_pipeline(
     
     """
     Create a preprocessing pipeline and define the columns for numeric and categorical transformers.
+    To avoid X.shape and y.shape inconsistencies, this step should not involved dropping of rows.
+    All rows dropping should be done before before slitting the datasets into X and y.
 
     Args:
         df (pd.DataFrame): The input DataFrame.

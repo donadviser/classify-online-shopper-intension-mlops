@@ -14,8 +14,8 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.ensemble import RandomForestClassifier
 from scipy.stats import zscore
 
-from logger import logging
-from exceptions import CustomException
+from src.logger import logging
+from src.exceptions import CustomException
 
 
 # Custom transformers
@@ -116,7 +116,7 @@ class FeatureEngineeringTransformer(BaseEstimator, TransformerMixin):
     def transform(self, X):
         X = X.copy()
         X = (X
-             .drop_duplicates()
+             #.drop_duplicates()
              .assign(interaction_rate = lambda x: x['page_values']/(x['product_related']+1)
                     )
             )
@@ -169,3 +169,5 @@ def cast_columns(df: pd.DataFrame) -> pd.DataFrame:
     data["energy_consumption"] = data["energy_consumption"].astype("float64")
 
     return data
+
+

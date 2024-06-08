@@ -20,6 +20,18 @@ The dataset consists of feature vectors belonging to 12,330 sessions. The datase
 - **Weekend:** A Boolean value indicating whether the date of the visit is weekend
 - **Month:** Month of the year
 
+
+## Steps
+To create a modular, production-ready machine learning code that includes custom transformers and encoding for both training and inference pipelines, we'll follow these steps:
+
+1. **Data Cleaning and Preprocessing:** Handle missing values, encode categorical features, and scale numerical features.
+2. **Feature Engineering:** Create custom features if necessary.
+3. **Pipeline Construction:** Construct pipelines for training and inference.
+4. **Model Training and Evaluation:** Train the model and evaluate its performance.
+5. **Saving and Loading Pipelines and Models:** Save the preprocessing pipeline and the trained model.
+6. **Model Deployment:** Deploy the model to the cloud
+7. **Inference:** Load the pipeline and model to make predictions on new data.
+
 __References:__
 
 * https://medium.com/analytics-vidhya/marketing-analytics-significance-of-feature-engineering-model-selection-and-hyper-parameter-53d34b57bc55
