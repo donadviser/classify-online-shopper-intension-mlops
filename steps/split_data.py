@@ -6,13 +6,13 @@ from typing_extensions import Annotated
 from zenml import step
 
 
-#@step
+@step
 def data_splitter(
     X: pd.DataFrame,
     y: pd.Series,
     test_size: float = 0.2,
     random_state: int = 42,
-    **kwargs
+    stratify=None
 ) -> Tuple[
     Annotated[pd.DataFrame, "X_train"],
     Annotated[pd.DataFrame, "X_test"],
@@ -43,6 +43,6 @@ def data_splitter(
             y_test: Testing target variable Series.
     """
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, **kwargs)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, stratify=stratify)
 
     return X_train, X_test, y_train, y_test

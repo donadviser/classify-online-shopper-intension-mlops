@@ -9,20 +9,17 @@ import joblib
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder
 from src.data_preprocess import create_preprocessing_pipeline
-from steps.split_data import data_splitter
 from utils.preprocess import DataFrameTransformer
 from zenml import step
 
-#@step
+@step
 def clean_df(
         X_train_clean: pd.DataFrame,
         X_test_clean: pd.DataFrame,
         y_train_clean: pd.Series,
         y_test_clean: pd.Series) -> Tuple[
-                                        Annotated[pd.DataFrame, "X_train_preprocessed"],
-                                        Annotated[pd.DataFrame, "X_test_preprocessed"],
-                                        Annotated[pd.Series, "y_train_processed"],
-                                        Annotated[pd.Series, "y_test_processed"],
+                                        Annotated[np.ndarray, "data_train_preprocessed"],
+                                        Annotated[np.ndarray, "data_test_preprocessed"],
 ]:
     
 

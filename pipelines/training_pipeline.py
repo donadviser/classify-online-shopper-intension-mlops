@@ -12,7 +12,7 @@ import pandas as pd
 import joblib
 
 
-#@pipeline(enable_cache=False)
+@pipeline(enable_cache=False)
 def train_pipeline(data_path: str)->None:
     """A pipeline to train a model.
 

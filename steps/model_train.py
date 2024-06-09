@@ -22,7 +22,7 @@ experiment_tracker = Client().active_stack.experiment_tracker
 #mlflow.sklearn.autolog()
 
 #@step(enable_cache=False, experiment_tracker=experiment_tracker.name)
-#@step()
+@step
 def train_model(
         train_array: np.ndarray, 
         test_array: np.ndarray,

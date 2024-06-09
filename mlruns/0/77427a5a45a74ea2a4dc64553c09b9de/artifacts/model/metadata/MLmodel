@@ -1,0 +1,30 @@
+artifact_path: model
+flavors:
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.4.2
+mlflow_version: 2.12.2
+model_size_bytes: 5454
+model_uuid: 2bf6457166c1479a808be1a46d707d62
+run_id: 77427a5a45a74ea2a4dc64553c09b9de
+signature:
+  inputs: '[{"type": "long", "name": "administrative", "required": true}, {"type":
+    "double", "name": "administrative_duration", "required": true}, {"type": "long",
+    "name": "informational", "required": true}, {"type": "double", "name": "informational_duration",
+    "required": true}, {"type": "long", "name": "product_related", "required": true},
+    {"type": "double", "name": "product_related_duration", "required": true}, {"type":
+    "double", "name": "bounce_rates", "required": true}, {"type": "double", "name":
+    "exit_rates", "required": true}, {"type": "double", "name": "page_values", "required":
+    true}, {"type": "double", "name": "special_day", "required": true}, {"type": "string",
+    "name": "month", "required": true}, {"type": "long", "name": "operating_systems",
+    "required": true}, {"type": "long", "name": "browser", "required": true}, {"type":
+    "long", "name": "region", "required": true}, {"type": "long", "name": "traffic_type",
+    "required": true}, {"type": "string", "name": "visitor_type", "required": true},
+    {"type": "boolean", "name": "weekend", "required": true}, {"type": "double", "name":
+    "interaction_rate", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1,
+    80]}}]'
+  params: null
+utc_time_created: '2024-06-09 05:48:40.749122'
