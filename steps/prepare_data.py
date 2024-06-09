@@ -28,47 +28,23 @@ def prepare_df(data_df: pd.DataFrame) -> Tuple[
     
     try:
 
-        print(f"{data_df.columns=}")
-        print(f"{data_df.shape=}")
-        print(data_df.head())
         data_prepared = DataCleaning(data_df, RenameColumnsStrategy())
         data_prepared = data_prepared.handle_data()
-        print(f"\RenameColumnsStrategy\n{data_prepared.shape}")
-        print(f"{data_prepared.columns=}")
-        print(f"{data_prepared.shape=}")
-        print(data_prepared.head())
+        
 
         data_prepared = DataCleaning(data_prepared, DropDuplicatesStrategy())
         data_prepared = data_prepared.handle_data()
-        print(f"\DropDuplicatesStrategy\n{data_prepared.shape}")
-        print(data_prepared.columns)
-        print(f"{data_prepared.shape=}")
-        print(data_prepared.head())
-
+        
         data_prepared = DataCleaning(data_prepared, DropMissingThreshold())
         data_prepared = data_prepared.handle_data()
-        print(f"\nDropMissingThreshold\n{data_prepared.shape}")
-        print(data_prepared.columns)
-        print(f"{data_prepared.shape=}")
-        print(data_prepared.head())
-
+        
         data_prepared = DataCleaning(data_prepared, FeatureEngineeringStrategy())
         data_prepared = data_prepared.handle_data()
-        print(f"\FeatureEngineeringStrategy\n{data_prepared.shape}")
-        print(data_prepared.columns)
-        print(f"{data_prepared.shape=}")
-        print(data_prepared.head())
-
+        
         
         data_divider = DataCleaning(data_prepared, DataDivideStrategy(target_col='revenue'))
         X_train_clean, X_test_clean, y_train_clean, y_test_clean = data_divider.handle_data()
-        print(f"\nDataDivideStrategy:\n{X_train_clean.shape}")
-        print(X_train_clean.shape)
-        print(X_test_clean.shape)
-        print(y_train_clean.shape)
-        print(X_train_clean.head())
-        print(y_train_clean.head())
-
+        
 
         joblib.dump(X_train_clean, 'artefacts/X_train_clean.joblib')
         joblib.dump(X_test_clean, 'artefacts/X_test_clean.joblib')

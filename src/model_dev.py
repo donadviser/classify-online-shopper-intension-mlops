@@ -249,15 +249,16 @@ class ModelTrainer:
                 return model
 
             else:
-                params = {'booster': 'dart', 
-                          'learning_rate': 0.029546438040391317, 
-                          'max_depth': 10, 
-                          'min_child_weight': 1, 
-                          'subsample': 0.5022867642068867, 
-                          'colsample_bytree': 0.5031572495220366, 
-                          'n_estimators': 199,
-                          'random_state': 42
-                          }
+                params = {
+                    'booster': 'dart', 
+                    'learning_rate': 0.016130258092904054, 
+                    'max_depth': 8, 
+                    'min_child_weight': 8, 
+                    'subsample': 0.7405184982356865, 
+                    'colsample_bytree': 0.6286302376190893, 
+                    'n_estimators': 183,
+                    'random_state': 42
+                    }
                 model = XGBClassifier(**params)
                 model.fit(self.X_train, self.y_train)
                 logging.info("Training Xgboost completed successfully")

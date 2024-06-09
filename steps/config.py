@@ -1,4 +1,4 @@
 
 class ModelNameConfig:
-    model_name = "randomforest"
+    model_name = "xgboost"
     do_fine_tuning = False

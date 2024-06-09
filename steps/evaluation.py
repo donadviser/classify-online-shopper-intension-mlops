@@ -16,8 +16,7 @@ experiment_tracker = Client().active_stack.experiment_tracker
 # Enable autologging for the relevant framework
 mlflow.sklearn.autolog()
 
-#@step(experiment_tracker=experiment_tracker.name)
-@step
+@step(experiment_tracker=experiment_tracker.name)
 def evaluate_model(model: ClassifierMixin,
                    test_array: np.ndarray,
                    )-> Tuple[

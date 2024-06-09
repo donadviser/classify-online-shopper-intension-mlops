@@ -31,14 +31,6 @@ def train_pipeline(data_path: str)->None:
         classifier_model = train_model(train_array, test_array)
         accuracy, precision_score, recall_score, f1_score, confusion_matrix, classification_report  = evaluate_model(classifier_model, test_array)
 
-        logging.info(f"accuracy: {accuracy}")
-        logging.info(f"precision_score: {precision_score}")
-        logging.info(f"recall_score: {recall_score}")
-        logging.info(f"f1_score: {f1_score}")
-        logging.info(f"confusion_matrix: {confusion_matrix}")
-        logging.info(f"classification_report: {classification_report}")
-        
-
         logging.info("Training pipeline completed successfully")      
 
     except Exception as e:
