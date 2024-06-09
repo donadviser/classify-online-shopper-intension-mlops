@@ -30,19 +30,12 @@ def clean_df(
         categorical_features = ["operating_systems", "browser", "region", "traffic_type", "visitor_type", 'special_day', "month", "weekend"]
         #numeric_features = X_train_clean.select_dtypes(include=['int64', 'float64']).columns.tolist()
         numeric_features = X_train_clean.columns.difference(categorical_features)
-        print(f"\nnumeric_features: {numeric_features}, \ncategorical_features: {categorical_features}")
-
-        print(X_train_clean[categorical_features])
-        print(X_train_clean.info())
-
-
+        
         preprocess_pipeline = create_preprocessing_pipeline(numeric_features, categorical_features)      
     
         # Fit and transform the data
         X_train_preprocessed = preprocess_pipeline.fit_transform(X_train_clean).toarray()
         X_test_preprocessed = preprocess_pipeline.transform(X_test_clean).toarray()
-
-
 
         # Retrieve feature names after transformation
         num_features = preprocess_pipeline.named_steps['preprocessor'].named_transformers_['num'].named_steps['scaler'].get_feature_names_out(numeric_features)
@@ -59,14 +52,6 @@ def clean_df(
         label_encoder = LabelEncoder()
         y_train_processed = label_encoder.fit_transform(y_train_clean)
         y_test_processed = label_encoder.fit_transform(y_test_clean)
-
-        print(f"{X_train_preprocessed.shape=}")
-        print(f"{X_test_preprocessed.shape=}")
-        print(f"{y_train_processed.shape=}")
-        print(f"{y_test_processed.shape=}")
-
-        print(f"{y_train_processed[20:41]=}")
-        print(f"{y_test_processed[20:41]=}")
 
         train_array = np.c_[X_train_preprocessed, np.array(y_train_processed)]
         test_array = np.c_[X_test_preprocessed, np.array(y_test_processed)]

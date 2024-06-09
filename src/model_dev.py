@@ -152,12 +152,7 @@ class ModelTrainer:
                     random_state=42
                     )
                 model.fit(self.X_train, self.y_train)
-                print(f"Best Parameters:")
-                #print(f"trial: {trial}")
-                print(f"n_estimators: {n_estimators}")
-                print(f"max_depth: {max_depth}")
-                print(f"min_samples_split: {min_samples_split}")
-                 
+                                 
                 logging.info("Training Random Forest model with hyperparameter tunning completed successfully")
                 return model
             else:

@@ -9,7 +9,7 @@ from zenml import step, ArtifactConfig
 from src.exceptions import CustomException
 from src.logger import logging
 from src.model_dev import ModelTrainer
-from steps.config import ModelNameConfig
+from config import ModelNameConfig
 import mlflow
 import mlflow.gluon
 

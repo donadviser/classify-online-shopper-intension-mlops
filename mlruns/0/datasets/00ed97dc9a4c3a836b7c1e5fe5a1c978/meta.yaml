@@ -1,9 +1,0 @@
-digest: 8637a8aa
-name: dataset
-profile: '{"features_shape": [2441, 80], "features_size": 195280, "features_nbytes":
-  1562240}'
-schema: '{"mlflow_tensorspec": {"features": "[{\"type\": \"tensor\", \"tensor-spec\":
-  {\"dtype\": \"float64\", \"shape\": [-1, 80]}}]", "targets": null}}'
-source: '{"tags": {"mlflow.user": "don", "mlflow.source.name": "run_pipeline.py",
-  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "31b9600c80634776088647b51324f13f0395237c"}}'
-source_type: code

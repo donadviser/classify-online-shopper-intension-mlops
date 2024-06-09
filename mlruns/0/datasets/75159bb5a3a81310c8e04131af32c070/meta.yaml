@@ -16,5 +16,5 @@ schema: '{"mlflow_colspec": [{"type": "long", "name": "administrative", "require
   true}, {"type": "boolean", "name": "weekend", "required": true}, {"type": "double",
   "name": "interaction_rate", "required": true}]}'
 source: '{"tags": {"mlflow.user": "don", "mlflow.source.name": "run_pipeline.py",
-  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "31b9600c80634776088647b51324f13f0395237c"}}'
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "15d0b587fdda3dd879fe04a46e6a1264a2c6720b"}}'
 source_type: code
