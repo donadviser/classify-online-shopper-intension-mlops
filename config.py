@@ -1,6 +1,6 @@
 
 class ModelNameConfig:
-    model_name = "xgboost"
+    model_name = "randomforest"
     do_fine_tuning = False
 
 class ServiceNameConfig:

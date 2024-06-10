@@ -8,8 +8,6 @@ from steps.evaluation import evaluate_model
 
 from src.logger import logging
 from src.exceptions import CustomException
-import pandas as pd
-import joblib
 
 
 @pipeline(enable_cache=False)

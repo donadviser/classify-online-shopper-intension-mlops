@@ -10,7 +10,7 @@ The dataset consists of feature vectors belonging to 12,330 sessions. The datase
 ## Attribute
 
 - **Revenue:** class whether it can make a revenue or not
-- **Administrative, Administrative Duration, Informational, Informational Duration, Product Related and Product Related Duration:** represent the number of different types of pages visited by the visitor in that session and total time spent in each of these page categories.
+- **Administrative, Administrative Duration, Informational, Informational Duration, Product Related, and Product Related Duration:** represent the number of different types of pages visited by the visitor in that session and total time spent in each of these page categories.
 - **Bounce Rate:** percentage of visitors who enter the site from that page and then leave (“bounce”) without triggering any other requests to the analytics server during that session
 - **Exit Rate:** the percentage that were the last in the session
 - **Page Value:** feature represents the average value for a web page that a user visited before completing an e-commerce transaction

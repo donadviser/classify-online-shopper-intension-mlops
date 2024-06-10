@@ -37,7 +37,7 @@ service_names = ServiceNameConfig()
     default=0.7,
     help="Minimum accuracy required to deploy the model",
 )
-def main(config: str, min_accuracy: float):
+def run_main(config: str, min_accuracy: float):
     """Run the MLflow example pipeline."""
     # get the MLflow model deployer stack component
     mlflow_model_deployer_component = MLFlowModelDeployer.get_active_model_deployer()
@@ -55,8 +55,8 @@ def main(config: str, min_accuracy: float):
     if predict:
         # Initialize an inference pipeline run
         inference_pipeline(
-            pipeline_name=service_names.PIPELINE_NAME,
-            pipeline_step_name=service_names.PIPELINE_STEP_NAME,
+            pipeline_name="continuous_deployment_pipeline",
+            pipeline_step_name="mlflow_model_deployer_step",
         )
 
     print(
@@ -71,9 +71,9 @@ def main(config: str, min_accuracy: float):
     # fetch existing services with same pipeline name, step name and model name
    
     existing_services = mlflow_model_deployer_component.find_model_server(
-        pipeline_name =  service_names.PIPELINE_NAME,    
-        pipeline_step_name= service_names.PIPELINE_STEP_NAME,   
-        model_name=service_names.MODEL_NAME,
+        pipeline_name =  "continuous_deployment_pipeline",    
+        pipeline_step_name= "mlflow_model_deployer_step",   
+        model_name="model",
     )
 
     if existing_services:
@@ -102,4 +102,4 @@ def main(config: str, min_accuracy: float):
 
 
 if __name__ == "__main__":
-    main()
+    run_main()

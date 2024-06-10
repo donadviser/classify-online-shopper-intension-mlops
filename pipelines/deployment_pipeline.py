@@ -6,6 +6,7 @@ import os
 import numpy as np
 import pandas as pd
 #from materializer.custom_materializer import cs_materializer
+from steps.prepare_data import prepare_df
 from steps.clean_data import clean_df
 from steps.evaluation import evaluate_model
 from steps.ingest_data import ingest_df
@@ -126,21 +127,23 @@ def predictor(
     return prediction
 
 
-@pipeline(enable_cache=True, settings={"docker": docker_settings})
+@pipeline(enable_cache=False, settings={"docker": docker_settings})
 def continuous_deployment_pipeline(
     min_accuracy = 0.7,
     workers: int = 1,
     timeout: int = DEFAULT_SERVICE_START_STOP_TIMEOUT,
 ):
     # Link all the steps artifacts together
-    target_col = "satisfaction"
-    data_path = "/Users/don/github-projects/customer-satisfaction-ml/data/olist_customers_dataset.csv"
-    df = ingest_df(data_path)
-    X_train, X_test, y_train, y_test, preprocessor = clean_df(df, target_col)
+    target_col = "revenue"
+    data_path = "https://raw.githubusercontent.com/donadviser/datasets/master/data-don/online_shoppers_intention.csv"
+    data_df = ingest_df(data_path)
+    X_train_clean, X_test_clean, y_train_clean, y_test_clean = prepare_df(data_df)
+    train_array, test_array = clean_df(X_train_clean, X_test_clean, y_train_clean, y_test_clean)
 
-    model = train_model(X_train, y_train, X_test, y_test)
-    accuracy, precision_score, recall_score, f1_score, confusion_matrix, classification_report = evaluate_model(model, X_test, y_test)
+    model = train_model(train_array, test_array)
+    accuracy, precision_score, recall_score, f1_score, confusion_matrix, classification_report  = evaluate_model(model, test_array)
     deployment_decision = deployment_trigger(accuracy=accuracy)
+    print(f"{deployment_decision=}")
     mlflow_model_deployer_step(
         model=model,
         deploy_decision=deployment_decision,

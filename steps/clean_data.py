@@ -60,6 +60,7 @@ def clean_df(
 
         # Save artefacts
         joblib.dump(preprocess_pipeline, 'artefacts/preprocess_pipeline.pkl')
+        joblib.dump(label_encoder, 'artefacts/label_encoder.pkl')
         joblib.dump(train_array, 'artefacts/data_train_preprocessed.pkl')
         joblib.dump(test_array, 'artefacts/data_test_preprocessed.pkl')
         logging.info("Preprocessed artefacts saved")

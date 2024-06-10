@@ -27,11 +27,11 @@ def prepare_df(data_df: pd.DataFrame) -> Tuple[
 ]:
     
     try:
-
+        print(f"{data_df.columns=}")
         data_prepared = DataCleaning(data_df, RenameColumnsStrategy())
         data_prepared = data_prepared.handle_data()
         
-
+        print(f"{data_prepared.columns=}")
         data_prepared = DataCleaning(data_prepared, DropDuplicatesStrategy())
         data_prepared = data_prepared.handle_data()
         
