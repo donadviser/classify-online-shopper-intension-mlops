@@ -112,6 +112,7 @@ class FeatureEngineeringStrategy(DataStrategy):
             data = (data
                     .assign(interaction_rate = lambda x: x['page_values']/(x['product_related']+1)
                     )
+                    .dropna()
                    )
             print(f"DataPreProcessStrategy completed successfully")
             return data

@@ -1,7 +1,8 @@
 # Predict Online Shoppers Purchasing Behaviour with Deployment
+## (Predicting Responses to Marketing Campaigns)
 
 ## Introduction
-This study aims to classify online shoppers' purchasing behavior using the Online Shoppers Intention __[Kaggle](https://www.kaggle.com/datasets/henrysue/online-shoppers-intention)__ dataset. This dataset consists of 18 features, including 10 numerical and 8 categorical attributes. The primary goal is to predict whether a customer made a purchase (purchase or no purchase) based on their browsing behavior and website interaction characteristics.
+This study aims to classify online shoppers' purchasing behaviour using the Online Shoppers Intention __[Kaggle](https://www.kaggle.com/datasets/henrysue/online-shoppers-intention)__ dataset. This dataset consists of 18 features, including 10 numerical and 8 categorical attributes. The primary goal is to predict whether a customer made a purchase (purchase or no purchase) based on their browsing behavior and website interaction characteristics.
 
 ## Dataset
 
@@ -15,7 +16,7 @@ The dataset consists of feature vectors belonging to 12,330 sessions. The datase
 - **Exit Rate:** the percentage that were the last in the session
 - **Page Value:** feature represents the average value for a web page that a user visited before completing an e-commerce transaction
 - **Special Day:** indicates the closeness of the site visiting time to a specific special day (e.g. Mother’s Day, Valentine’s Day) in which the sessions are more likely to be finalized with transaction. For example, for Valentine’s day, this value takes a nonzero value between February 2 and February 12, zero,before and after this date unless it is close to another special day, and its maximum value of 1 on February 8
-- **Operating system,browser, region, traffic type:** Different types of operating systems, browser, region and traffic type used to visit the website
+- **Operating system, browser, region, traffic type:** Different types of operating systems, browser, region and traffic type used to visit the website
 - **Visitor type:** Whether the customer is a returning or new visitor
 - **Weekend:** A Boolean value indicating whether the date of the visit is weekend
 - **Month:** Month of the year
@@ -31,6 +32,12 @@ To create a modular, production-ready machine learning code that includes custom
 5. **Saving and Loading Pipelines and Models:** Save the preprocessing pipeline and the trained model.
 6. **Model Deployment:** Deploy the model to the cloud
 7. **Inference:** Load the pipeline and model to make predictions on new data.
+
+
+## Modelling
+1. Random Forest  
+2. XGBoost  
+3. Light GBM
 
 
 In order to achieve this in a real-world scenario, we will be using [ZenML](https://zenml.io/) to

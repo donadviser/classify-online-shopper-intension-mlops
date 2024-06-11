@@ -8,6 +8,7 @@ parent_folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..
 sys.path.append(parent_folder_path)
 
 import pandas as pd
+import numpy as np
 import joblib
 from src.logger import logging
 from src.exceptions import CustomException
@@ -42,21 +43,38 @@ def get_data_for_test(target_col: str='revenue'):
         data_prepared = DataCleaning(data_prepared, FeatureEngineeringStrategy())
         data_prepared = data_prepared.handle_data()
 
-        X_test_clean = data_prepared.drop(columns=target_col)
+        X_test_clean = data_prepared.drop(columns=target_col) 
         y_test_clean = data_prepared[target_col]
 
 
+        # Load the preprocessing pipeline and label encoder
         artefact_path = "/Users/don/github-projects/classify-online-shopper-intension-mlops/artefacts"
         preprocess_pipeline = joblib.load(os.path.join(artefact_path, 'preprocess_pipeline.pkl'))
         label_encoder = joblib.load(os.path.join(artefact_path, 'label_encoder.pkl'))
 
-        X_test_preprocessed = preprocess_pipeline.transform(X_test_clean) 
-        y_test_preprocessed = label_encoder.transform(y_test_clean) 
-
-    
-        logging.info("Conpleted preprocessing pipeline for the test dataset")
+        # Preprocess the test features
+        X_test_preprocessed = preprocess_pipeline.transform(X_test_clean).toarray()
         
-        return X_test_preprocessed, y_test_preprocessed
+        
+        # Encode the test labels
+        y_test_preprocessed = label_encoder.transform(y_test_clean)
+
+        # Verify the shapes before concatenation
+        logging.info(f"X_test_preprocessed.shape={X_test_preprocessed.shape}")
+        logging.info(f"y_test_preprocessed.shape={y_test_preprocessed.shape}")
+
+        if X_test_preprocessed.shape[0] != y_test_preprocessed.shape[0]:
+            raise CustomException(
+                f"Shape mismatch: X_test_preprocessed has {X_test_preprocessed.shape[0]} rows, "
+                f"but y_test_preprocessed has {y_test_preprocessed.shape[0]} rows"
+            )
+
+        # Concatenate the preprocessed features and labels
+        test_array = np.c_[X_test_preprocessed, np.array(y_test_preprocessed)]
+
+        logging.info("Completed preprocessing pipeline for the test dataset")
+        
+        return test_array
     except Exception as e:
         raise CustomException(e, "Failed to load preprocessing pipeline to clean the inference dataset")
     
